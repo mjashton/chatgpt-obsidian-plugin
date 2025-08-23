@@ -54,14 +54,61 @@ class ChatGPTToObsidianPlugin {
 	}
 }
 
-// Test with your actual data
-const chatgptDataPath = 'C:\\Users\\shama\\Downloads\\5a383a6a2022b0a2e3df26540d10097c06b929a5d5dd5ad2d1b1332e9e04edc8-2025-08-23-14-58-13-5b2f2d21d1f946c8a6ab9f0b06132e1e\\conversations.json';
+// Resolve input path from CLI args or environment
+function resolveInputPath() {
+	const args = process.argv.slice(2);
+	let filePath = process.env.CONVERSATIONS_JSON || null;
+	let dirPath = null;
+
+	for (const arg of args) {
+		if (arg.startsWith('--path=')) filePath = arg.replace('--path=', '');
+		else if (arg.startsWith('--dir=')) dirPath = arg.replace('--dir=', '');
+		else if (!arg.startsWith('--') && !filePath && !dirPath) filePath = arg; // first positional
+	}
+
+	if (!filePath && dirPath) {
+		filePath = path.join(dirPath, 'conversations.json');
+	}
+
+	if (!filePath) return null;
+
+	// Expand ~ on POSIX and handle quotes
+	if (filePath.startsWith('~')) {
+		filePath = path.join(require('os').homedir(), filePath.slice(1));
+	}
+
+	return filePath;
+}
+
+function printUsage() {
+	console.log('Usage:');
+	console.log('  node test-parser.cjs --path="/path/to/conversations.json"');
+	console.log('  node test-parser.cjs --dir="/path/to/unzipped-export-folder"');
+	console.log('  CONVERSATIONS_JSON=/path/to/conversations.json node test-parser.cjs');
+	console.log('');
+	console.log('Notes:');
+	console.log('  - If you provide --dir, the script will append \'conversations.json\' automatically.');
+	console.log('  - On Windows PowerShell, use: node .\\test-parser.cjs --path "C:\\Users\\you\\Downloads\\export\\conversations.json"');
+}
 
 try {
 	const plugin = new ChatGPTToObsidianPlugin();
+	const chatgptDataPath = resolveInputPath();
+
+	if (!chatgptDataPath) {
+		console.error('Error: No input path provided.');
+		printUsage();
+		process.exit(1);
+	}
+
+	if (!fs.existsSync(chatgptDataPath)) {
+		console.error(`Error: File not found at: ${chatgptDataPath}`);
+		printUsage();
+		process.exit(1);
+	}
+
 	const data = fs.readFileSync(chatgptDataPath, 'utf8');
-	
-	console.log('Loading ChatGPT conversations...');
+	console.log(`Loading ChatGPT conversations from: ${chatgptDataPath}`);
 	const rawConversations = plugin.parseChatGPTData(data);
 	console.log(`Found ${rawConversations.length} conversations`);
 	

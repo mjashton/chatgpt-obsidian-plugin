@@ -131,8 +131,14 @@ npm run build
 ### Testing
 
 ```bash
-# Test the parser independently
-node test-parser.cjs
+# Test the parser independently with your ChatGPT export
+node test-parser.cjs --path="/path/to/your/conversations.json"
+
+# Or use the directory containing your export
+node test-parser.cjs --dir="/path/to/your/export-folder"
+
+# On Windows:
+node test-parser.cjs --path="C:\Users\YourName\Downloads\export\conversations.json"
 
 # For full testing, copy built files to an Obsidian vault and test manually
 ```
