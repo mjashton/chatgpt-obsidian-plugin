@@ -1,0 +1,138 @@
+/* ChatGPT to Obsidian Plugin Styles */
+
+.conversation-item {
+  margin-bottom: 15px;
+}
+
+.conversation-item .conversation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.response-item {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.response-preview {
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.file-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px dashed var(--background-modifier-border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.conversations-section {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.save-note-preview {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 12px;
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.conversation-stats {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.qa-pair {
+  margin: 15px 0;
+  padding: 15px;
+  background: var(--background-secondary);
+  border-radius: 8px;
+  border-left: 3px solid var(--interactive-accent);
+}
+
+.qa-pair .prompt-section {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: var(--background-primary);
+  border-radius: 5px;
+  border-left: 3px solid var(--text-accent);
+}
+
+.qa-pair .response-section {
+  padding: 12px;
+  background: var(--background-primary);
+  border-radius: 5px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.qa-pair pre {
+  background: var(--background-secondary);
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 8px 0;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.qa-pair code {
+  background: var(--background-secondary);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: var(--font-monospace);
+}
+
+.qa-pair ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.qa-pair li {
+  margin: 4px 0;
+}
