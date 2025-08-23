@@ -1,29 +1,22 @@
 # Development Context
 
-## Development Environment
+## Development Environment Requirements
 
-### System Environment
-- **OS**: Windows 11
-- **Shell**: PowerShell 5.1.26100.4768
-- **Node.js**: 24.6.0 (upgraded from 12.16.3 during development)
-- **npm**: Corrupted during development, bypassed with direct esbuild usage
+### System Requirements
+- **Node.js**: 18+ LTS (required for modern tooling)
+- **TypeScript**: For development
+- **esbuild**: Build tool (specified in package.json)
 
-### Development Tools
-- **Primary Language**: TypeScript
-- **Build Tool**: esbuild 0.24.0
-- **Target Environment**: Obsidian Plugin (Electron app)
-- **IDE Considerations**: Should work with VS Code TypeScript support
+### Build Process
+**Standard Build**:
+```bash
+npm run build
+```
 
-### Build Process Evolution
-The build process had several iterations due to environmental issues:
-
-1. **Initial Setup**: Standard npm-based build
-2. **Node.js Compatibility Issue**: Upgraded from Node 12.16.3 to 24.6.0  
-3. **npm Corruption**: npm became unreliable, switched to direct esbuild execution
-4. **Final Build Command**:
-   ```bash
-   D:\dev\chatgpt-obsidian-plugin\node_modules\.bin\esbuild.cmd main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
-   ```
+**Manual Build** (if npm issues):
+```bash
+node_modules/.bin/esbuild main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
+```
 
 ## Project Genesis Context
 
@@ -45,43 +38,7 @@ The build process had several iterations due to environmental issues:
 - **File Access**: Browser-based file selection (no direct file system access)
 - **Markdown Compatibility**: Output must be valid Obsidian markdown
 - **Cross-Platform**: Must work on Windows, macOS, and Linux
-
-## Development Challenges Encountered
-
-### 1. Node.js Version Compatibility
-**Problem**: Initial development used Node.js 12.16.3, which was too old for modern tooling.
-
-**Solution**: Upgraded to Node.js 24.6.0 LTS.
-
-**Learning**: Always verify Node.js version compatibility before starting plugin development.
-
-### 2. npm Installation Corruption
-**Problem**: npm became unreliable after Node.js upgrade, failing to run or install packages properly.
-
-**Workaround**: Used direct esbuild.cmd execution instead of npm scripts.
-
-**Learning**: Have backup build strategies ready when npm fails.
-
-### 3. ChatGPT Data Structure Complexity
-**Problem**: ChatGPT exports use a complex tree structure, not simple arrays.
-
-**Solution**: Implemented tree-walking parser that follows parent-child relationships.
-
-**Learning**: Always analyze sample data thoroughly before implementing parsers.
-
-### 4. UI Scalability
-**Problem**: Initial UI showed all conversations at once, becoming overwhelming with large exports.
-
-**Solution**: Implemented table of contents + single conversation view pattern.
-
-**Learning**: Consider scalability from the beginning, especially for data import tools.
-
-### 5. Module System Compatibility
-**Problem**: Mixed ES modules and CommonJS requirements between Node.js and Obsidian.
-
-**Solution**: Used esbuild to bundle as CommonJS with ES2016 target.
-
-**Learning**: Obsidian plugins must output CommonJS despite modern ES module preferences.
+- **Module Format**: Must output CommonJS for Obsidian compatibility
 
 ## Code Organization Evolution
 

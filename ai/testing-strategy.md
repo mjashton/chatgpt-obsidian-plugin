@@ -13,7 +13,8 @@ This plugin prioritizes **integration testing** with real ChatGPT export data ov
 
 **Usage**:
 ```bash
-node test-parser.cjs
+node test-parser.cjs --path="/path/to/conversations.json"
+node test-parser.cjs --dir="/path/to/export-folder"
 ```
 
 **What it tests**:
@@ -86,7 +87,9 @@ node test-parser.cjs
 ### 2. Build Verification
 ```bash  
 # Build the plugin
-D:\dev\chatgpt-obsidian-plugin\node_modules\.bin\esbuild.cmd main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
+npm run build
+# Or manually:
+node_modules/.bin/esbuild main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
 
 # Verify output
 node -c main.js  # Should not error

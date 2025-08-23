@@ -18,8 +18,8 @@ node --version
 
 **Root Cause**: Modern tooling requires recent Node.js versions
 
-### 2. npm Installation Corruption  
-**Problem**: npm commands fail after Node.js upgrade
+### 2. npm Installation Issues  
+**Problem**: npm commands fail or produce errors
 ```
 npm ERR! cb() never called!
 npm ERR! This is an error with npm itself.
@@ -29,12 +29,13 @@ npm ERR! This is an error with npm itself.
 ```bash
 # Instead of: npm run build
 # Use: 
-D:\dev\chatgpt-obsidian-plugin\node_modules\.bin\esbuild.cmd main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
+node_modules/.bin/esbuild main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
 ```
 
-**Alternative**: Reinstall Node.js completely and clear npm cache
+**Alternative**: Clear npm cache and reinstall
 ```bash
 npm cache clean --force
+npm install
 ```
 
 ### 3. Module Format Errors
