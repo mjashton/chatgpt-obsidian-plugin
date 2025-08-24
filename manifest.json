@@ -1,7 +1,7 @@
 {
 	"id": "chatgpt-to-obsidian",
 	"name": "ChatGPT to Obsidian",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Import ChatGPT conversations and save individual responses as Obsidian notes",
 	"author": "Your Name",
