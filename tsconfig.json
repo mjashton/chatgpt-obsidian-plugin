@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "declaration": false,
+    "esModuleInterop": true,
     "lib": [
       "DOM",
       "ES6"

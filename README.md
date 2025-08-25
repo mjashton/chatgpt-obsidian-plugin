@@ -12,6 +12,10 @@ An Obsidian plugin that allows you to import ChatGPT conversation exports and sa
 - 🏷️ **YAML Frontmatter**: Includes metadata like tags, timestamps, and conversation context
 - ⚙️ **Customizable Settings**: Configure default folders, tags, and note formatting
 - 🚀 **Scalable UI**: Handles large conversation exports efficiently
+- 🧠 **Smart State Tracking**: Tracks which Q&A pairs have been processed (New/Saved/Ignored)
+- 🎯 **Conversation-Level Filtering**: Filter conversations by processing status (New/Partially Processed/Fully Processed)
+- 📊 **Processing Status Indicators**: Visual indicators show conversation and Q&A pair states
+- 🔍 **Q&A Pair Filtering**: Filter individual Q&A pairs within conversations by their status
 
 ## Installation
 
@@ -41,7 +45,11 @@ An Obsidian plugin that allows you to import ChatGPT conversation exports and sa
 3. Build the plugin:
    ```bash
    npm run build
-   # Or if npm is having issues:
+   
+   # If npm is having issues, use the esbuild config directly:
+   node esbuild.config.mjs production
+   
+   # Or use the direct esbuild command:
    node_modules\\.bin\\esbuild.cmd main.ts --bundle --external:obsidian --outfile=main.js --format=cjs --target=es2016
    ```
 
@@ -126,6 +134,10 @@ npm run dev
 
 # Or build manually
 npm run build
+
+# If npm is having issues:
+node esbuild.config.mjs production  # Production build
+node esbuild.config.mjs             # Development build with watch
 ```
 
 ### Testing
@@ -206,6 +218,15 @@ Common issues and solutions are documented in [`ai/common-issues.md`](ai/common-
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
+
+### v2.0.0
+- **NEW**: Smart Q&A pair state tracking (New/Saved/Ignored)
+- **NEW**: Conversation-level filtering by processing status
+- **NEW**: Visual status indicators throughout the UI
+- **NEW**: Q&A pair filtering within conversations
+- **IMPROVED**: Enhanced table of contents with processing status
+- **IMPROVED**: Better organization of conversations by completion state
+- **IMPROVED**: Persistent state tracking across plugin sessions
 
 ### v1.0.0
 - Initial release
